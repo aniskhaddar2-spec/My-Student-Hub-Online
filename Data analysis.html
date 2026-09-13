@@ -1,60 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>My Student Hub</title>
-
     <link rel="icon" type="image/png" href="images/logo.png">
-
     <link rel="stylesheet" href="Style.css">
 </head>
-
 <body>
-
     <header>
         <h1>📊 Data Analysis</h1>
         <p>Data analysis course materials</p>
     </header>
-
     <main>
-
         <a href="courses.html" class="back-button">← Back to Courses</a>
-
-        <div class="file-list" id="fileList">
-        </div>
-
+        <div class="file-list" id="fileList"></div>
     </main>
-
     <script src="files_data.js"></script>
-
     <script>
-
         const fileList = document.getElementById("fileList");
-
         MSH_FILES.data_analysis.forEach(fileName => {
-
             const file = document.createElement("div");
             file.className = "file";
-
+            const fileUrl = "files/courses/Data%20Analysis/" + encodeURIComponent(fileName);
+            const isPython = fileName.toLowerCase().endsWith(".py");
+            const openLink = isPython
+                ? `viewer.html?file=${encodeURIComponent(fileUrl)}`
+                : fileUrl;
             file.innerHTML = `
                 <h3>📄 ${fileName}</h3>
-
                 <p>Data analysis file</p>
-
-                <a href="viewer.html?file=${encodeURIComponent("files/courses/Data Analysis/" + fileName)}">
-                    👁️ Open
-                </a>
+                <a href="${openLink}" target="_blank" rel="noopener">👁️ Open</a>
             `;
-
             fileList.appendChild(file);
-
         });
-
     </script>
-
 </body>
-
 </html>
