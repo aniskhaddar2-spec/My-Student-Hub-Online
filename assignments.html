@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Student Hub</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>📝 Assignments</h1>
+        <p>My university assignments and tasks</p>
+    </header>
+
+    <main>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="file-list" id="assignment-list">
+        </div>
+
+    </main>
+
+    <!-- Automatically generated file information -->
+    <script src="files_data.js"></script>
+
+    <script>
+        const assignmentList = document.getElementById("assignment-list");
+
+        const assignments = MSH_FILES.assignments;
+
+        if (assignments.length === 0) {
+
+            assignmentList.innerHTML = `
+                <div class="file">
+                    <h3>📭 No assignments yet</h3>
+                    <p>No assignment files have been added.</p>
+                </div>
+            `;
+
+        } else {
+
+            assignments.forEach(fileName => {
+
+                const file = document.createElement("div");
+                file.className = "file";
+
+                file.innerHTML = `
+                    <h3>📝 ${fileName}</h3>
+                    <p>Assignment file</p>
+                    <a href="files/assigments/${encodeURIComponent(fileName)}" download>
+                        Download
+                    </a>
+                `;
+
+                assignmentList.appendChild(file);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

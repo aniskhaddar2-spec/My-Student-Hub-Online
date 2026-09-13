@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Student Hub</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>📄 Important Documents</h1>
+        <p>Certificates, CV and other important files</p>
+    </header>
+
+    <main>
+
+        <a href="index.html" class="back-button">← Back to Home</a>
+
+        <div class="file-list" id="fileList">
+        </div>
+
+    </main>
+
+    <script src="files_data.js"></script>
+
+    <script>
+
+        const fileList = document.getElementById("fileList");
+
+        MSH_FILES.important.forEach(fileName => {
+
+            const file = document.createElement("div");
+            file.className = "file";
+
+            file.innerHTML = `
+                <h3>📄 ${fileName}</h3>
+
+                <p>Important document</p>
+
+                <a href="files/important/${encodeURIComponent(fileName)}">
+                    👁️ Open
+                </a>
+            `;
+
+            fileList.appendChild(file);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

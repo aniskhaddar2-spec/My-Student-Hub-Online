@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Chatbot - My Student Hub</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="chatbot.css">
+
+</head>
+
+
+<body>
+
+    <main>
+
+        <a href="projects.html" class="back-link">
+            ← Back to Projects
+        </a>
+
+
+        <div id="chat-box">
+
+
+            <!-- =====================================
+                 CHATBOT HEADER
+                 ===================================== -->
+
+            <div class="chat-header">
+
+                <div class="bot-icon">
+                    🤖
+                </div>
+
+                <div class="bot-info">
+
+                    <h1>College BI Assistant</h1>
+
+                    <div class="status">
+
+                        <span class="status-dot"></span>
+
+                        Online
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 WELCOME MESSAGE
+                 ===================================== -->
+
+            <div class="welcome-text">
+
+                Your virtual college assistant.
+                Ask me about courses, teachers,
+                schedules, locations or college statistics.
+
+            </div>
+
+
+            <!-- =====================================
+                 SUGGESTED QUESTIONS
+                 ===================================== -->
+
+            <div id="suggested-questions">
+
+                <button onclick="askQuestion('What courses are available?')">
+                    📚 Available courses
+                </button>
+
+                <button onclick="askQuestion('Who teaches Python?')">
+                    👨‍🏫 Python teacher
+                </button>
+
+                <button onclick="askQuestion('What is the Python schedule?')">
+                    🕐 Python schedule
+                </button>
+
+                <button onclick="askQuestion('Where is the library?')">
+                    📍 Library location
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 CHAT MESSAGES
+                 ===================================== -->
+
+            <div id="chat-messages">
+
+                <div class="bot-message">
+
+                    Hello! 👋 I'm your College BI Assistant.
+
+                    <br><br>
+
+                    How can I help you today?
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 INPUT AREA
+                 ===================================== -->
+
+            <div id="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="Ask something..."
+                    autocomplete="off"
+                >
+
+                <button onclick="sendMessage()">
+                    Send
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <script src="chatbot.js"></script>
+
+</body>
+
+</html>

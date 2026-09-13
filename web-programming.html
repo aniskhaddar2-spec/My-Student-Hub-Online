@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Student Hub</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌐 Web Programming</h1>
+        <p>Web programming course materials</p>
+    </header>
+
+    <main>
+
+        <a href="courses.html" class="back-button">← Back to Courses</a>
+
+        <div class="file-list" id="fileList">
+        </div>
+
+    </main>
+
+    <script src="files_data.js"></script>
+
+    <script>
+
+        const fileList = document.getElementById("fileList");
+
+        MSH_FILES.web_programming.forEach(fileName => {
+
+            const file = document.createElement("div");
+            file.className = "file";
+
+            file.innerHTML = `
+                <h3>📄 ${fileName}</h3>
+
+                <p>Web programming course material</p>
+
+                <a href="files/courses/web-programming/${encodeURIComponent(fileName)}">
+                    👁️ Open
+                </a>
+            `;
+
+            fileList.appendChild(file);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
