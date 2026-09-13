@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Student Hub - Viewer</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        .viewer-container { margin-top: 20px; }
+        #pdfViewer { width: 100%; height: 75vh; border: 1px solid #ccc; border-radius: 8px; }
+        #codeViewer {
+            display: none;
+            white-space: pre-wrap;
+            overflow: auto;
+            background: #f5f5f5;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: left;
+            font-family: Consolas, "Courier New", monospace;
+            line-height: 1.5;
+        }
+        .viewer-actions { margin: 15px 0; display: flex; gap: 10px; flex-wrap: wrap; }
+        .viewer-actions a { text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">📄 File Viewer</h1>
+        <p id="status">Loading...</p>
+    </header>
+
+    <main>
+        <a href="javascript:history.back()" class="back-button">← Back</a>
+
+        <div class="viewer-container">
+            <div class="viewer-actions">
+                <a id="downloadLink" href="#" download>⬇️ Download</a>
+            </div>
+
+            <iframe id="pdfViewer" title="PDF viewer"></iframe>
+            <pre id="codeViewer"></pre>
+        </div>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get("file");
+
+        const title = document.getElementById("title");
+        const status = document.getElementById("status");
+        const pdfViewer = document.getElementById("pdfViewer");
+        const codeViewer = document.getElementById("codeViewer");
+        const downloadLink = document.getElementById("downloadLink");
+
+        if (!file) {
+            status.textContent = "No file was specified.";
+            downloadLink.style.display = "none";
+        } else {
+            const url = file;
+            const fileName = decodeURIComponent(file.split("/").pop() || "File");
+            title.textContent = "📄 " + fileName;
+            downloadLink.href = url;
+
+            const lowerName = fileName.toLowerCase();
+
+            if (lowerName.endsWith(".py")) {
+                pdfViewer.style.display = "none";
+                codeViewer.style.display = "block";
+                status.textContent = "Python source code";
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) throw new Error("HTTP " + response.status);
+                        return response.text();
+                    })
+                    .then(code => {
+                        codeViewer.textContent = code;
+                    })
+                    .catch(error => {
+                        status.textContent = "Could not display this file: " + error.message;
+                        codeViewer.textContent = "The file could not be loaded. Use Download to save the original file.";
+                    });
+            } else {
+                codeViewer.style.display = "none";
+                pdfViewer.style.display = "block";
+                status.textContent = "Document preview";
+                pdfViewer.src = url;
+            }
+        }
+    </script>
+</body>
+</html>
