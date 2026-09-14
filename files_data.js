@@ -1,6 +1,7 @@
 const MSH_FILES = {
     "assignments": [
         "assignment1.pdf",
+        "TD IOT.pdf",
         "td2_rev1.pdf",
         "TP UML.pdf (1).pdf"
     ],
