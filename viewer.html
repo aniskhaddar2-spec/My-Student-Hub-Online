@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Student Hub - Viewer</title>
+    <title id="pageTitle">My Student Hub - Viewer</title>
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="Style.css">
     <style>
@@ -31,7 +31,7 @@
     </header>
 
     <main>
-        <a href="javascript:history.back()" class="back-button">← Back</a>
+        <a href="Data%20analysis.html" class="back-button">← Back to Data Analysis</a>
 
         <div class="viewer-container">
             <div class="viewer-actions">
@@ -59,6 +59,7 @@
         } else {
             const url = file;
             const fileName = decodeURIComponent(file.split("/").pop() || "File");
+            document.title = fileName;
             title.textContent = "📄 " + fileName;
             downloadLink.href = url;
 
@@ -70,10 +71,10 @@
                 status.textContent = "Python source code";
 
                 fetch(url)
-                    .then(response => {
-                        if (!response.ok) throw new Error("HTTP " + response.status);
-                        return response.text();
-                    })
+    .then(response => {
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        return response.text();
+    })
                     .then(code => {
                         codeViewer.textContent = code;
                     })

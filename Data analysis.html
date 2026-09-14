@@ -22,7 +22,7 @@
         MSH_FILES.data_analysis.forEach(fileName => {
             const file = document.createElement("div");
             file.className = "file";
-            const fileUrl = "files/courses/Data%20Analysis/" + encodeURIComponent(fileName);
+            const fileUrl = "files/courses/Data Analysis/" + encodeURIComponent(fileName);
             const isPython = fileName.toLowerCase().endsWith(".py");
             const openLink = isPython
                 ? `viewer.html?file=${encodeURIComponent(fileUrl)}`
@@ -30,7 +30,7 @@
             file.innerHTML = `
                 <h3>📄 ${fileName}</h3>
                 <p>Data analysis file</p>
-                <a href="${openLink}" target="_blank" rel="noopener">👁️ Open</a>
+                <a href="${openLink}">👁️ Open</a>
             `;
             fileList.appendChild(file);
         });
