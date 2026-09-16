@@ -29,6 +29,7 @@ const MSH_FILES = {
         "cour fouille de donneé.pdf",
         "Exercices d’Analyse et Fouille de Données avec Correction.pdf",
         "Netflix dataset.py",
+        "Penguins_Dataset (1).ipynb",
         "penguins_dataset (1).py",
         "série complète de révision en Analyse et Fouille de Données (Data Mining).pdf",
         "série de révision complète en fouille de données (Data Mining).pdf",
