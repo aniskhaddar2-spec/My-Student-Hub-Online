@@ -26,12 +26,12 @@
         const file = document.createElement("div");
         file.className = "file";
 
-        const filePath = fileName
-            .split("/")
-            .map(part => encodeURIComponent(part))
-            .join("/");
-
-        const fileUrl = "files/courses/Data Analysis/" + filePath;
+        // Build the correct URL for files inside subfolders
+        const fileUrl = "files/courses/Data%20Analysis/" +
+            fileName
+                .split("/")
+                .map(part => encodeURIComponent(part))
+                .join("/");
 
         const isPython = fileName.toLowerCase().endsWith(".py");
 
