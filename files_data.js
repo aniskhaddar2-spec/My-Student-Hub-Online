@@ -31,6 +31,7 @@ const MSH_FILES = {
         "Netflix dataset.py",
         "Penguins_Dataset (1).ipynb",
         "penguins_dataset (1).py",
+        "penguins_size.csv",
         "série complète de révision en Analyse et Fouille de Données (Data Mining).pdf",
         "série de révision complète en fouille de données (Data Mining).pdf",
         "TP _ Prédiction des Espèces d’Iris avec Machine Learning.pdf",
