@@ -26,9 +26,26 @@ for name, folder in FOLDERS.items():
         continue
 
     files = []
-    for file in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
-        if file.is_file():
-            files.append(file.name)
+
+    # Data Analysis gets special recursive scanning
+    if name == "data_analysis":
+
+        # Keep all existing top-level files
+        for file in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
+            if file.is_file():
+                files.append(file.name)
+
+        # Also scan subfolders for Python files
+        for file in sorted(folder.rglob("*.py"), key=lambda x: str(x).lower()):
+            if file.parent != folder:
+                relative_path = file.relative_to(folder).as_posix()
+                files.append(relative_path)
+
+    else:
+        # Everything else works exactly as before
+        for file in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
+            if file.is_file():
+                files.append(file.name)
 
     all_files[name] = files
 
@@ -44,6 +61,7 @@ print("--------------------------------")
 
 for folder_name, files in all_files.items():
     print(f"\n📁 {folder_name}")
+
     if not files:
         print("   No files found")
     else:

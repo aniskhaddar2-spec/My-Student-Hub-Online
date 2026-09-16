@@ -17,23 +17,38 @@
         <div class="file-list" id="fileList"></div>
     </main>
     <script src="files_data.js"></script>
-    <script>
-        const fileList = document.getElementById("fileList");
-        MSH_FILES.data_analysis.forEach(fileName => {
-            const file = document.createElement("div");
-            file.className = "file";
-            const fileUrl = "files/courses/Data Analysis/" + encodeURIComponent(fileName);
-            const isPython = fileName.toLowerCase().endsWith(".py");
-            const openLink = isPython
-                ? `viewer.html?file=${encodeURIComponent(fileUrl)}`
-                : fileUrl;
-            file.innerHTML = `
-                <h3>📄 ${fileName}</h3>
-                <p>Data analysis file</p>
-                <a href="${openLink}">👁️ Open</a>
-            `;
-            fileList.appendChild(file);
-        });
-    </script>
+    <script src="files_data.js"></script>
+
+<script>
+    const fileList = document.getElementById("fileList");
+
+    MSH_FILES.data_analysis.forEach(fileName => {
+        const file = document.createElement("div");
+        file.className = "file";
+
+        const filePath = fileName
+            .split("/")
+            .map(part => encodeURIComponent(part))
+            .join("/");
+
+        const fileUrl = "files/courses/Data Analysis/" + filePath;
+
+        const isPython = fileName.toLowerCase().endsWith(".py");
+
+        const openLink = isPython
+            ? `viewer.html?file=${encodeURIComponent(fileUrl)}`
+            : fileUrl;
+
+        const displayName = fileName.split("/").pop();
+
+        file.innerHTML = `
+            <h3>📄 ${displayName}</h3>
+            <p>Data analysis file</p>
+            <a href="${openLink}">👁️ Open</a>
+        `;
+
+        fileList.appendChild(file);
+    });
+</script>
 </body>
 </html>
