@@ -34,7 +34,8 @@ const MSH_FILES = {
         "TP _ Prédiction des Espèces d’Iris avec Machine Learning.pdf",
         "tp fouille de donneé.pdf",
         "TP – Prédiction du prix des maisons (Regression).pdf",
-        "Penguins Dataset/penguins_dataset (1).py"
+        "Penguins Dataset/penguins_dataset (1).py",
+        "Student Performance ML/student_performance.py"
     ],
     "math": [
         "Chaitre 2 Variable statistique discrète.pdf",
