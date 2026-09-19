@@ -9,7 +9,10 @@ Original file is located at
 
 import pandas as pd
 
-df = pd.read_csv("penguins_size.csv")
+from pathlib import Path
+
+file_path = Path(__file__).parent / "penguins_size.csv"
+df = pd.read_csv(file_path)
 
 df.head()
 
