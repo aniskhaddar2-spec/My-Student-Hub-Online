@@ -8,7 +8,8 @@ const MSH_FILES = {
     "important": [
         "certificate.png",
         "certificate2.png",
-        "cv.pdf"
+        "cv.pdf",
+        "Java Certificate.png"
     ],
     "python": [
         "python.pdf"
