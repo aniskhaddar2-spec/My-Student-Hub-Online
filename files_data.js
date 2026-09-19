@@ -6,9 +6,9 @@ const MSH_FILES = {
         "TP UML.pdf (1).pdf"
     ],
     "important": [
-        "certificate.png",
-        "certificate2.png",
         "cv.pdf",
+        "Environmental Engineering Certificate.png",
+        "IA and ML Certificate.png",
         "Java Certificate.png"
     ],
     "python": [
