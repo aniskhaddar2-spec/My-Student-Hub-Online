@@ -255,3 +255,101 @@ df_clustered4 = X_cluster.copy()
 df_clustered4["Cluster"] = clusters4
 
 df_clustered4.groupby("Cluster").mean()
+
+print("Top numerical correlations:")
+print(df.select_dtypes(include="number").corr()["Exam_Score"].sort_values(ascending=False))
+
+print("\nTop Decision Tree features:")
+print(importance.head(10))
+
+plt.scatter(df["Attendance"], df["Exam_Score"])
+plt.xlabel("Attendance")
+plt.ylabel("Exam Score")
+plt.title("Attendance vs Exam Score")
+plt.show()
+
+plt.scatter(df["Hours_Studied"], df["Exam_Score"])
+plt.xlabel("Hours Studied")
+plt.ylabel("Exam Score")
+plt.title("Hours Studied vs Exam Score")
+plt.show()
+
+plt.scatter(df["Attendance"], df["Exam_Score"])
+plt.xlabel("Attendance")
+plt.ylabel("Exam Score")
+plt.title("Attendance vs Exam Score")
+plt.show()
+
+df["Attendance_Group"] = pd.cut(
+    df["Attendance"],
+    bins=[0, 60, 70, 80, 90, 100],
+    labels=["≤60", "61–70", "71–80", "81–90", "91–100"]
+)
+
+attendance_scores = df.groupby(
+    "Attendance_Group",
+    observed=True
+)["Exam_Score"].mean()
+
+print(attendance_scores)
+
+print(df["Hours_Studied"].min())
+print(df["Hours_Studied"].max())
+
+df["Study_Hours_Group"] = pd.cut(
+    df["Hours_Studied"],
+    bins=[0, 10, 20, 30, 40, 44],
+    labels=["1–10", "11–20", "21–30", "31–40", "41–44"]
+)
+
+study_scores = df.groupby(
+    "Study_Hours_Group",
+    observed=True
+)["Exam_Score"].mean()
+
+print(study_scores)
+
+import matplotlib.pyplot as plt
+
+attendance_scores.plot(kind="bar")
+
+plt.xlabel("Attendance Group")
+plt.ylabel("Average Exam Score")
+plt.title("Average Exam Score by Attendance Group")
+plt.xticks(rotation=0)
+plt.show()
+
+study_scores.plot(kind="bar")
+
+plt.xlabel("Study Hours Group")
+plt.ylabel("Average Exam Score")
+plt.title("Average Exam Score by Study Hours Group")
+plt.xticks(rotation=0)
+plt.show()
+
+comparison = pd.DataFrame({
+    "Factor": ["Attendance", "Hours Studied"],
+    "Lowest_Group_Avg": [attendance_scores.iloc[0], study_scores.iloc[0]],
+    "Highest_Group_Avg": [attendance_scores.iloc[-1], study_scores.iloc[-1]]
+})
+
+comparison["Difference"] = (
+    comparison["Highest_Group_Avg"] -
+    comparison["Lowest_Group_Avg"]
+)
+
+print(comparison)
+
+# Plot comparison of low-to-high group differences
+
+comparison.plot(
+    x="Factor",
+    y="Difference",
+    kind="bar"
+)
+
+plt.xlabel("Factor")
+plt.ylabel("Difference in Average Exam Score")
+plt.title("Change in Average Exam Score")
+plt.xticks(rotation=0)
+plt.show()
