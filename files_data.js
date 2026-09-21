@@ -42,11 +42,18 @@ const MSH_FILES = {
         "Student Performance ML/StudentPerformanceFactors.csv"
     ],
     "math": [
+        "_Série_Concepts de base.pdf",
         "Chaitre 2 Variable statistique discrète.pdf",
+        "Chap1-Part1-Graphes et applications.pdf",
         "chapitre 3 variable statistique continue.pdf",
         "Chapitre 4 Etude d'une variable statistique à deux dimensions(cours et td corrigé).pdf",
         "charitre 1 Généralité sur la statistique.pdf",
+        "correction 2complète et détaillée de ta série de révision en Analyse et Fouille de Données (Data Mining) 👇.pdf",
+        "correction détaillée de la série de révision en théorie des graphes.pdf",
         "correction TD1.pdf",
+        "Exercices de Théorie des Graphes avec Correction.pdf",
+        "Introduction aux graphes et optimisations.pdf",
+        "Série 1_Formulation d'un problème.pdf",
         "TD3(variable statistique continue).pdf"
     ],
     "english": [
@@ -83,9 +90,14 @@ const MSH_FILES = {
         "TP5.pdf"
     ],
     "database_systems": [
+        "CH0-Introduction.pptx",
+        "CH1-Modélisation des DW.pptx",
         "Correction – TP 1.pdf",
+        "Description-Projet.docx",
         "SGBD.pdf",
+        "TD1.docx",
         "TP1.pdf",
+        "TP1_Collect.docx",
         "TP2.pdf"
     ],
     "it_fundamentals": [
