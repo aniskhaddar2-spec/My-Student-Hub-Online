@@ -30,14 +30,16 @@ const MSH_FILES = {
         "cour fouille de donneé.pdf",
         "Exercices d’Analyse et Fouille de Données avec Correction.pdf",
         "Netflix dataset.py",
-        "student performances factors.pbix",
         "série complète de révision en Analyse et Fouille de Données (Data Mining).pdf",
         "série de révision complète en fouille de données (Data Mining).pdf",
         "TP _ Prédiction des Espèces d’Iris avec Machine Learning.pdf",
         "tp fouille de donneé.pdf",
         "TP – Prédiction du prix des maisons (Regression).pdf",
         "Penguins Dataset/penguins_dataset (1).py",
-        "Student Performance ML/student_performance.py"
+        "Penguins Dataset/penguins_size.csv",
+        "Student Performance ML/student performances factors.pbix",
+        "Student Performance ML/student_performance.py",
+        "Student Performance ML/StudentPerformanceFactors.csv"
     ],
     "math": [
         "Chaitre 2 Variable statistique discrète.pdf",

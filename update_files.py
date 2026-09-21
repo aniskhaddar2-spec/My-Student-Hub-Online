@@ -35,9 +35,9 @@ for name, folder in FOLDERS.items():
             if file.is_file():
                 files.append(file.name)
 
-        # Also scan subfolders for Python files
-        for file in sorted(folder.rglob("*.py"), key=lambda x: str(x).lower()):
-            if file.parent != folder:
+        # Also scan all files inside subfolders
+        for file in sorted(folder.rglob("*"), key=lambda x: str(x).lower()):
+            if file.is_file() and file.parent != folder:
                 relative_path = file.relative_to(folder).as_posix()
                 files.append(relative_path)
 
