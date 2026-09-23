@@ -42,7 +42,6 @@ const MSH_FILES = {
         "TP – Prédiction du prix des maisons (Regression).pdf"
     ],
     "math": [
-        "_Série_Concepts de base.pdf",
         "Chaitre 2 Variable statistique discrète.pdf",
         "Chap1-Part1-Graphes et applications.pdf",
         "chapitre 3 variable statistique continue.pdf",
@@ -54,6 +53,7 @@ const MSH_FILES = {
         "Exercices de Théorie des Graphes avec Correction.pdf",
         "Introduction aux graphes et optimisations.pdf",
         "Série 1_Formulation d'un problème.pdf",
+        "Série_Concepts de base.pdf",
         "TD3(variable statistique continue).pdf"
     ],
     "english": [
