@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,12 @@
 
         MSH_FILES.python.forEach(fileName => {
 
+            const fileUrl = "files/courses/Python/" +
+                fileName
+                    .split("/")
+                    .map(part => encodeURIComponent(part))
+                    .join("/");
+
             const file = document.createElement("div");
             file.className = "file";
 
@@ -44,7 +51,7 @@
 
                 <p>Python course material</p>
 
-                <a href="files/courses/Python/${encodeURIComponent(fileName)}">
+                <a href="${fileUrl}">
                     👁️ Open
                 </a>
             `;
@@ -58,3 +65,4 @@
 </body>
 
 </html>
+
