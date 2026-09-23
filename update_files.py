@@ -1,10 +1,14 @@
 from pathlib import Path
 import json
 
-# Main My Student Hub folder
-BASE_DIR = Path(__file__).parent
+# ============================================================
+# My Student Hub - File Scanner
+# ============================================================
 
-# Folders we want to scan
+# Main My Student Hub folder
+BASE_DIR = Path(__file__).resolve().parent
+
+# Folders to scan
 FOLDERS = {
     "assignments": BASE_DIR / "files" / "assigments",
     "important": BASE_DIR / "files" / "important",
@@ -18,55 +22,115 @@ FOLDERS = {
     "it_fundamentals": BASE_DIR / "files" / "courses" / "it-fundamentals"
 }
 
-all_files = {}
 
-for name, folder in FOLDERS.items():
-    if not folder.exists():
-        all_files[name] = []
-        continue
+def scan_folder(folder):
+    """
+    Recursively find every file inside a folder.
+
+    Returns:
+        A sorted list of file paths relative to the section folder.
+    """
 
     files = []
 
-    # Data Analysis gets special recursive scanning
-    if name == "data_analysis":
+    # Folder does not exist
+    if not folder.exists():
+        return files
 
-        # Keep all existing top-level files
-        for file in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
-            if file.is_file():
-                files.append(file.name)
+    # Make sure the path is actually a directory
+    if not folder.is_dir():
+        print(f"⚠️ Not a folder: {folder}")
+        return files
 
-        # Also scan all files inside subfolders
-        for file in sorted(folder.rglob("*"), key=lambda x: str(x).lower()):
-            if file.is_file() and file.parent != folder:
-                relative_path = file.relative_to(folder).as_posix()
+    try:
+        # rglob("*") searches through all subfolders at any depth
+        for item in folder.rglob("*"):
+
+            # We only want files
+            if item.is_file():
+
+                # Keep the folder structure in the generated path
+                relative_path = item.relative_to(folder).as_posix()
+
                 files.append(relative_path)
 
-    else:
-        # Everything else works exactly as before
-        for file in sorted(folder.iterdir(), key=lambda x: x.name.lower()):
-            if file.is_file():
-                files.append(file.name)
+    except OSError as error:
+        print(f"⚠️ Could not fully scan: {folder}")
+        print(f"   Reason: {error}")
 
-    all_files[name] = files
+    # Remove duplicates just in case
+    files = list(dict.fromkeys(files))
+
+    # Sort alphabetically
+    files.sort(key=str.lower)
+
+    return files
+
+
+# ============================================================
+# Scan every section
+# ============================================================
+
+all_files = {}
+
+for section_name, folder in FOLDERS.items():
+
+    print(f"\n🔎 Scanning: {section_name}")
+
+    files = scan_folder(folder)
+
+    all_files[section_name] = files
+
+    print(f"   📄 Files found: {len(files)}")
+
+
+# ============================================================
+# Create files_data.js
+# ============================================================
 
 output_file = BASE_DIR / "files_data.js"
 
-with open(output_file, "w", encoding="utf-8") as f:
-    f.write("const MSH_FILES = ")
-    json.dump(all_files, f, indent=4, ensure_ascii=False)
-    f.write(";")
+try:
 
-print("🤖 My Student Hub File Scanner")
-print("--------------------------------")
+    with open(output_file, "w", encoding="utf-8") as file:
 
-for folder_name, files in all_files.items():
-    print(f"\n📁 {folder_name}")
+        file.write("const MSH_FILES = ")
 
-    if not files:
-        print("   No files found")
-    else:
-        for file in files:
-            print(f"   📄 {file}")
+        json.dump(
+            all_files,
+            file,
+            indent=4,
+            ensure_ascii=False
+        )
 
-print("\n✅ File list created!")
-print(f"📄 {output_file.name}")
+        file.write(";")
+
+except OSError as error:
+
+    print("\n❌ Could not create files_data.js")
+    print(f"   Reason: {error}")
+
+else:
+
+    # ========================================================
+    # Display final results
+    # ========================================================
+
+    print("\n================================")
+    print("🤖 My Student Hub File Scanner")
+    print("================================")
+
+    for section_name, files in all_files.items():
+
+        print(f"\n📁 {section_name}")
+
+        if not files:
+            print("   No files found")
+
+        else:
+            for file_path in files:
+                print(f"   📄 {file_path}")
+
+    print("\n✅ File list created successfully!")
+    print(f"📄 {output_file.name}")
+

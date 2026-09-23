@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,14 @@
 
         MSH_FILES.web_programming.forEach(fileName => {
 
+            // Safely encode each part of the path
+            // while keeping folder separators (/)
+            const fileUrl = "files/courses/web-programming/" +
+                fileName
+                    .split("/")
+                    .map(part => encodeURIComponent(part))
+                    .join("/");
+
             const file = document.createElement("div");
             file.className = "file";
 
@@ -44,7 +53,7 @@
 
                 <p>Web programming course material</p>
 
-                <a href="files/courses/web-programming/${encodeURIComponent(fileName)}">
+                <a href="${fileUrl}">
                     👁️ Open
                 </a>
             `;
@@ -58,3 +67,4 @@
 </body>
 
 </html>
+

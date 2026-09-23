@@ -53,10 +53,18 @@
                 const file = document.createElement("div");
                 file.className = "file";
 
+                // Safely encode each part of the path
+                // while keeping folder separators (/)
+                const fileUrl = "files/assigments/" +
+                    fileName
+                        .split("/")
+                        .map(part => encodeURIComponent(part))
+                        .join("/");
+
                 file.innerHTML = `
                     <h3>📝 ${fileName}</h3>
                     <p>Assignment file</p>
-                    <a href="files/assigments/${encodeURIComponent(fileName)}">
+                    <a href="${fileUrl}">
                         👁️ Open
                     </a>
                 `;
@@ -69,3 +77,4 @@
 </body>
 
 </html>
+

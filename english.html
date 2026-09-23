@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,14 @@
 
         MSH_FILES.english.forEach(fileName => {
 
+            // Safely encode each part of the path
+            // while keeping folder separators (/)
+            const fileUrl = "files/courses/English/" +
+                fileName
+                    .split("/")
+                    .map(part => encodeURIComponent(part))
+                    .join("/");
+
             const file = document.createElement("div");
             file.className = "file";
 
@@ -44,7 +53,7 @@
 
                 <p>English course material</p>
 
-                <a href="files/courses/English/${encodeURIComponent(fileName)}">
+                <a href="${fileUrl}">
                     👁️ Open
                 </a>
             `;
@@ -58,3 +67,4 @@
 </body>
 
 </html>
+
