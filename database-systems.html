@@ -39,18 +39,14 @@
             const file = document.createElement("div");
             file.className = "file";
 
-            const filePath = `files/courses/database-systems/${encodeURIComponent(fileName)}`;
-
-            const isDocx = fileName.toLowerCase().endsWith(".docx");
-
             file.innerHTML = `
                 <h3>📄 ${fileName}</h3>
 
                 <p>Database systems course material</p>
 
-                <a href="${filePath}" ${isDocx ? `download="${fileName}"` : ""}>
-    ${isDocx ? "⬇️ Download" : "👁️ Open"}
-</a>
+                <a href="files/courses/database-systems/${encodeURIComponent(fileName)}">
+                    👁️ Open
+                </a>
             `;
 
             fileList.appendChild(file);
