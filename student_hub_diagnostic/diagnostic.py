@@ -16,7 +16,12 @@ for html_file in html_files:
 
     content = html_file.read_text(encoding="utf-8")
 
-    links = re.findall(r'href=["\']([^"\']+)["\']', content)
+    links = re.findall(
+        r'(?:href|src)=["\']([^"\']+)["\']',
+        content
+    )
+
+    print(f"🔎 {html_file.name}: {len(links)} references found")
 
     for link in links:
 
@@ -39,10 +44,8 @@ for html_file in html_files:
 
         if linked_file.exists():
             valid_links.append((html_file, link))
-
         else:
             broken_links.append((html_file, link))
-
 
 print()
 print("📊 Link Analysis")
@@ -64,3 +67,44 @@ if broken_links:
 
 else:
     print("🎉 No broken links found!")
+    
+    print()
+print("📂 PATH ANALYSIS")
+print("------------------------------")
+
+files_worth_checking = []
+
+for item in hub_folder.rglob("*"):
+
+    if item.is_file():
+
+        filename = item.name
+        reasons = []
+
+        if " " in filename:
+            reasons.append("contains spaces")
+
+        if "_" in filename:
+            reasons.append("contains underscores")
+
+        if reasons:
+            files_worth_checking.append((item, reasons))
+
+
+print(f"⚠️ Files worth checking: {len(files_worth_checking)}")
+
+if files_worth_checking:
+
+    print()
+    print("📄 Files worth checking")
+    print("------------------------------")
+
+    for file, reasons in files_worth_checking:
+
+        print()
+        print(f"⚠️ {file.relative_to(hub_folder)}")
+        print(f"   Reason: {', '.join(reasons)}")
+
+else:
+    print("🎉 No files worth checking!")
+
