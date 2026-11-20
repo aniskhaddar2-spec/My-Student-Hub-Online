@@ -38,6 +38,7 @@ const MSH_FILES = {
         "Student Performance ML/StudentPerformanceFactors.csv",
         "série complète de révision en Analyse et Fouille de Données (Data Mining).pdf",
         "série de révision complète en fouille de données (Data Mining).pdf",
+        "TP 0 — Initiation Progressive au Langage Python.pdf",
         "TP 1.pdf",
         "TP 2.pdf",
         "TP _ Prédiction des Espèces d’Iris avec Machine Learning.pdf",
