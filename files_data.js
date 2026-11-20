@@ -112,12 +112,15 @@ const MSH_FILES = {
         "Chapitre 1 Introduction à la conception orientée objet des systèmes d’information.pdf",
         "chapitre 3 Diagrammes de classe.pdf",
         "chapitre 4diagramme-d-objet.pdf",
+        "Chapitre1_sécurité.pdf",
+        "Chapitre2_sécurité.pdf",
         "revision pour examen  UML.pdf",
         "revision pour examen exercices corrigés.pdf",
         "TD _ Langage de modélisation (UML).pdf",
         "Td corrigé diagramme de classe.pdf",
         "TD1 (1).pdf",
         "TP UML.pdf (1).pdf",
+        "TP1 IT Security.pdf",
         "uml CAS D'UTILISATION CORRECTION.pdf"
     ]
 };
