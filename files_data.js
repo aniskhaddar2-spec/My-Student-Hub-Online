@@ -45,7 +45,8 @@ const MSH_FILES = {
         "tp fouille de donneé.pdf",
         "TP – Prédiction du prix des maisons (Regression).pdf",
         "TP3.pdf",
-        "TP4.pdf"
+        "TP4.pdf",
+        "TP5.pdf"
     ],
     "math": [
         "Chaitre 2 Variable statistique discrète.pdf",
